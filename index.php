@@ -15,7 +15,7 @@ if (!isset($_SESSION["user"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PERPUS DIGITALL - Dashboard</title>
+    <title>PERPUS DIGITALL</title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-vhN4eKZZcIq6JHxL/T0xVZC6u6Nf9D9wVfVh5+2gAa8MC2+GzY/2yD+QdR5zjkJX/7jrf1oPZ8aClbH+qz4BZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@ if (!isset($_SESSION["user"])) {
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-book-open"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">PERPUS DIGITALL <sup>14</sup></div>
+                <div class="sidebar-brand-text mx-3">PERPUS DIGITALL</div>
             </a>
 
             <!-- Divider -->
@@ -70,12 +70,12 @@ if (!isset($_SESSION["user"])) {
                     <span>Peminjaman</span>
                 </a>
 
-                <?php if ($_SESSION["user"]["level"] != "peminjam") : ?>
+                <?php if ($_SESSION["user"]["level"] != "admin") : ?>
                 <li class="nav-item">
-                 <a class="nav-link collapsed" href="?page=kategori" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                 <a class="nav-link collapsed" href="index.php?page=kategori" >
                     <i class="fas fa-fw fa-bars"></i>
                     <span>Kategori</span>
+                    <i class="fas fa-angle-right float-right mt-1"></i>
                  </a>
                 </li>
                 <?php endif; ?>
@@ -327,11 +327,14 @@ if (!isset($_SESSION["user"])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
+                    <?php 
+                        $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+                        if ($page === 'home') : ?>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Content Row -->
                     <div class="row">
